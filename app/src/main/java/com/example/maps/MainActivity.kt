@@ -101,30 +101,26 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    fun mapsSetting() {
+        val newzoom = CameraUpdateFactory.newLatLngZoom(LatLng(30.4928, 31.2919), 8F)
+        mMap?.animateCamera(newzoom)
+        mMap?.mapType = GoogleMap.MAP_TYPE_NORMAL
+        mMap?.uiSettings!!.isZoomControlsEnabled = true
+        mMap?.uiSettings!!.isCompassEnabled = true
+        mMap?.uiSettings!!.isScrollGesturesEnabled = false
+        mMap?.uiSettings!!.isZoomGesturesEnabled = false
+        mMap?.setPadding(20, 20, 20, 20)
+        mMap?.setOnMapClickListener {
+            mMap?.clear()
+            addMark(it)
+        }
+    }
+    private fun addMark(it: LatLng) {
+        val marker2 = MarkerOptions()
+        marker2.title(it.longitude.toString() + "" + it.latitude.toString())
+        marker2.position(LatLng(it.latitude, it.longitude))
+        mMap?.addMarker(marker2)
+    }
+
+
 }
-
-
-
-//    fun mapsSetting() {
-//        val newzoom = CameraUpdateFactory.newLatLngZoom(LatLng(30.4928, 31.2919), 8F)
-//        mMap?.animateCamera(newzoom)
-//        mMap?.mapType = GoogleMap.MAP_TYPE_NORMAL
-//        mMap?.uiSettings!!.isZoomControlsEnabled = true
-//        mMap?.uiSettings!!.isCompassEnabled = true
-//        mMap?.uiSettings!!.isScrollGesturesEnabled = false
-//        mMap?.uiSettings!!.isZoomGesturesEnabled = false
-//        mMap?.setPadding(20, 20, 20, 20)
-//        mMap?.setOnMapClickListener {
-//            mMap?.clear()
-//            addMark(it)
-//        }
-//    }
-//    private fun addMark(it: LatLng) {
-//        val marker2 = MarkerOptions()
-//        marker2.title(it.longitude.toString() + "" + it.latitude.toString())
-//        marker2.position(LatLng(it.latitude, it.longitude))
-//        mMap?.addMarker(marker2)
-//    }
-//
-//
-//}
